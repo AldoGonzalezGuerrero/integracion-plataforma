@@ -3,18 +3,17 @@ drop table libro;
 create table libro 
 (
 id_libro int primary key,
-id_autor int foreign key
-references autor(id_autor),
 titulo varchar(150),
 autor varchar(100),
-num_copias int
+num_copias int,
+precio int,
 );
 
-insert into libro values (1,01,'La Odisea', 'Homero' , 25);
-insert into libro values (2,01,'La Iliada', 'Homero' , 20);
-insert into libro values (3,02,'Harry Potter: La Piedra Filosofal', 'J. K. Rowling' , 75);
-insert into libro values (4,03,'El Alquimista', 'Paulo Coelho' , 50);
-insert into libro values (5,04,'Crepúsculo', 'Stephenie Meyer' , 15);
+insert into libro values (1,'La Odisea', 'Homero' , 25,4500);
+insert into libro values (2,'La Iliada', 'Homero' , 20,4000);
+insert into libro values (3,'Harry Potter: La Piedra Filosofal', 'J. K. Rowling' , 75,7500);
+insert into libro values (4,'El Alquimista', 'Paulo Coelho' , 50, 10900);
+insert into libro values (5,'Crepúsculo', 'Stephenie Meyer' , 15, 2000);
 
 select * from libro;
 
