@@ -1,16 +1,4 @@
 drop table libro;
-drop table autor;
-
-create table autor 
-(
-id_autor int primary key,
-nombre varchar (150),
-);
-
-insert into autor values (01, 'Homero');
-insert into autor values (02, 'J.K Rowling');
-insert into autor values (03, 'Paulo Coelho');
-insert into autor values (04, 'Stephenie Meyer');
 
 create table libro 
 (
