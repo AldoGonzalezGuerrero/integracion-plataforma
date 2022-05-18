@@ -1,30 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
 namespace WebAppLibreria.Controllers
 {
-    public class LibroController : Controller
+    public class LibrosController : ApiController
     {
-        // GET: Libro
+        libreriaEntities con = new libreriaEntities();
+        // GET: api/Libros
+
         public IEnumerable<libro> Get()
         {
             return con.libro.ToList();
+
         }
 
-        // GET: Libro/Details/5
-        public libro Get(int id)
+        // GET: api/Libros/5
+        public libro Get(int id_libro)
         {
-            return con.libro.Find(id);
+            return con.libro.Find(id_libro);
         }
 
-        // POST: Libro/Create
+        // POST: api/Libros
         public IHttpActionResult Post([FromBody]libro lbo)
         {
-            libro temp = con.libro.Where(s => s.id == lbo.id).FirstOfDefault();
-            (if temp == null)
+            libro temp = con.libro.Where(s => s.id_libro == lbo.id_libro).FirstOrDefault();
+            if (temp == null)
             {
                 con.libro.Add(lbo);
                 con.SaveChanges();
@@ -35,13 +39,14 @@ namespace WebAppLibreria.Controllers
                 return BadRequest();
             }
         }
-        //PUT REQUEST
-        public IHttpActionResult Put(int id, [FromBody] libro lbo)
+
+        // PUT: api/Libros/5
+        public IHttpActionResult Put(int id_libro, [FromBody] libro lbo)
         {
-            libro tmp = con.libro.Find(std.id);
+            libro tmp = con.libro.Find(lbo.id_libro);
             if (tmp != null)
             {
-                con.autor = std.autor;
+                tmp.titulo = lbo.titulo;
                 con.SaveChanges();
                 return Ok();
             }
@@ -50,10 +55,11 @@ namespace WebAppLibreria.Controllers
                 return BadRequest();
             }
         }
-        //DELETE
+
+        // DELETE: api/Libros/5
         public IHttpActionResult DELETE([FromBody] libro lbo)
         {
-            libro tmp = con.libro.Find(std.id);
+            libro tmp = con.libro.Find(lbo.id_libro);
             if (tmp != null)
             {
                 con.libro.Remove(tmp);
@@ -66,5 +72,4 @@ namespace WebAppLibreria.Controllers
             }
         }
     }
-}
 }
