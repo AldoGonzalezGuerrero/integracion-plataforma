@@ -18,5 +18,12 @@ insert into libro values (5,04,'Crepúsculo', 'Stephenie Meyer' , 15);
 
 select * from libro;
 
-LAB_TR1_PC28
-LAB_TR1_PC28\SQLEXPRESS
+create table carrito
+(
+id_orden int primary key,
+id_libro int,
+titulo_libro varchar(150),
+cantidad int,
+valor_unitario int,
+valor_total int, 
+)
